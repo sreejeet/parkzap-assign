@@ -13,11 +13,15 @@ class UserDataCreateView(CreateModelMixin,
 
     def perform_create(self, serializer):
         if serializer.is_valid():
-            # serializer.save()
-            print(serializer.data['name'])
-            # send_mail(
-            #     f'Hey {serializer.data['name']}',
-            #     'Thank you for your submission.',
-            #     'from@yourdjangoapp.com',
-            #     ['vsreejeet@gmail.com']
-            # )
+            serializer.save()
+            print('Sending email to',
+                  serializer.data['name'], 'at', serializer.data['email'])
+            try:
+                send_mail(
+                    f'Hey {serializer.data["name"]}',
+                    'Thank you for your submission.',
+                    'from@yourdjangoapp.com',
+                    ['vsreejeet@gmail.com']
+                )
+            except Exception as e:
+                print(f"Exception while sending email: ", str(e))
