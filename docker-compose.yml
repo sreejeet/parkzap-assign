@@ -6,8 +6,6 @@ services:
   # The API application running on gunicorn
   web:
     restart: always
-    environment:
-      - DJANGO_SECRET_KEY=local
     image: web
     build: ./
     command: >
@@ -18,7 +16,7 @@ services:
       - ./:/code:Z
       - static_volume:/static
     expose:
-      - "8000"
+      - 8000
 
 
   # Nginx server exposed to the internet
