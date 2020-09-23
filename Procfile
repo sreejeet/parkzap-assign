@@ -1,1 +1,1 @@
-web: gunicorn userform.wsgi:application
+web: gunicorn userform.wsgi --log-file -
