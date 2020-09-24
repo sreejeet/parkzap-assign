@@ -20,8 +20,9 @@ class UserDataCreateView(CreateModelMixin,
                 send_mail(
                     f'Hey {serializer.data["name"]}',
                     'Thank you for your submission.',
-                    'from@yourdjangoapp.com',
+                    'from@userform.com',
                     ['vsreejeet@gmail.com']
                 )
+                print(f"Email sent")
             except Exception as e:
                 print(f"Exception while sending email: ", str(e))
